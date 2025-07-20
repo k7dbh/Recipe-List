@@ -1,6 +1,6 @@
 #  Recipe-List
 
-<img src="./pictures/spaceman.png" width="400" height="350">
+<img src="" width="400" height="350">
 
 - Done by: Khaled Jamal
 
