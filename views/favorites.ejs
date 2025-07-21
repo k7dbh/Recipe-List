@@ -1,0 +1,25 @@
+<%- include('./partials/head') %>
+<div class="container mt-4">
+  <h1>Your Favorite Listings</h1>
+  <% if (favorites.length === 0) { %>
+    <p>You have no favorites yet.</p>
+  <% } %>
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    <% favorites.forEach((listing) => { %>
+      <div class="col">
+        <div class="card h-100">
+          <img src="<%= listing.image.url %>" class="card-img-top" alt="Image of <%= listing.title %>">
+          <div class="card-body">
+            <h5 class="card-title"><%= listing.title %></h5>
+            <p class="card-text"><%= listing.description %></p>
+            <p class="card-text"><strong><%= listing.price %> BHD</strong></p>
+            <a href="/listings/<%= listing._id %>" class="btn btn-primary">View Listing</a>
+            <form action="/favorites/<%= listing._id %>/remove" method="POST" class="d-inline">
+              <button class="btn btn-warning" type="submit">★ Unfavorite</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+</div>
