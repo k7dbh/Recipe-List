@@ -1,0 +1,24 @@
+<%- include('../partials/head') %>
+<div class="container mt-4" style="max-width: 600px;">
+  <h1>Edit the Listing</h1>
+  <form action="/listings/<%= foundListing._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+    <div class="mb-3">
+      <label for="title" class="form-label">Title:</label>
+      <input type="text" name="title" id="title" class="form-control" value="<%= foundListing.title %>" required />
+    </div>
+    <div class="mb-3">
+      <label for="description" class="form-label">Description:</label>
+      <textarea name="description" id="description" class="form-control" rows="3" required><%= foundListing.description %></textarea>
+    </div>
+    <div class="mb-3">
+      <label for="price" class="form-label">Price:</label>
+      <input type="number" name="price" id="price" class="form-control" value="<%= foundListing.price %>" required />
+    </div>
+    <div class="mb-3">
+      <label for="image" class="form-label">Replace Image (optional):</label>
+      <input type="file" accept="image/*" name="image" id="image" class="form-control" />
+      <small>Leave blank to keep current image.</small>
+    </div>
+    <button type="submit" class="btn btn-warning">Update Listing</button>
+  </form>
+</div>

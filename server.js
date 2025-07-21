@@ -14,7 +14,7 @@ app.set('views', path.join(__dirname, 'views'));
 
 const authController = require('./controllers/auth.controller');
 const listingController = require("./controllers/listing.controller");
-const favoritesRouter = require('./controllers/favorites'); // <-- add this line
+const favoritesRouter = require('./controllers/favorites');
 
 const isSignedIn = require('./middleware/is-signed-in');
 const passUserToView = require('./middleware/pass-user-to-view');
@@ -25,7 +25,7 @@ const User = require('./models/user');
 // DATABASE CONNECTION
 mongoose.connect(process.env.MONGODB_URI);
 mongoose.connection.on('connected', () => {
-    console.log(`Connected to MongoDB ${mongoose.connection.name} 🙃.`);
+    console.log(`Connected to MongoDB ${mongoose.connection.name} .`);
 });
 
 // MIDDLEWARE
@@ -44,6 +44,35 @@ app.use(session({
 app.use(passUserToView);
 
 // HOMEPAGE SEARCH 
+
+app.get('/', async (req, res) => {
+    const search = req.query.search;
+    let foundListings;
+    if (search) {
+        foundListings = await Listing.find({
+            $or: [
+                { title: { $regex: search, $options: 'i' } },
+                { description: { $regex: search, $options: 'i' } }
+            ]
+        });
+    } else {
+        foundListings = await Listing.find();
+    }
+    //FAVORITE LISTS
+    let userWithFavorites = null;
+    if (req.session.user) {
+        userWithFavorites = await User.findById(req.session.user._id).populate('favorites');
+    }
+
+    res.render('index.ejs', {
+        title: 'my App',
+        foundListings,
+        search,
+        user: userWithFavorites
+            ? { ...req.session.user, favorites: userWithFavorites.favorites.map(fav => fav._id.toString()) }
+            : req.session.user || null
+    });
+});
 
 
 // ROUTES

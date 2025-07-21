@@ -14,7 +14,7 @@ const listingSchema = new mongoose.Schema({
     url: { type: String, required: true },
     cloudinary_id: { type: String, required: true }
   },
-  seller: { type: Schema.Types.ObjectId, ref: 'User' },
+  viewer: { type: Schema.Types.ObjectId, ref: 'User' },
   comments: [commentSchema]
 }, { timestamps: true });
 
