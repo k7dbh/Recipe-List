@@ -3,14 +3,14 @@ const router = express.Router();
 const User = require('../models/user');
 const Listing = require('../models/listing');
 const isSignedIn = require('../middleware/is-signed-in');
-
+// ADD Favorite
 router.post('/:listingId/add', isSignedIn, async (req, res) => {
   await User.findByIdAndUpdate(req.session.user._id, {
     $addToSet: { favorites: req.params.listingId }
   });
   res.redirect(req.get('referer') || '/');
 });
-
+// REMOVE FAVORITE
 router.post('/:listingId/remove', isSignedIn, async (req, res) => {
   await User.findByIdAndUpdate(req.session.user._id, {
     $pull: { favorites: req.params.listingId }

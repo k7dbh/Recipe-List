@@ -5,16 +5,18 @@ const isSignedIn = require('../middleware/is-signed-in');
 const upload = require('../config/multer');
 const User = require('../models/user');
 
+// VIEW NEW LISTING FORM
 router.get("/new", isSignedIn, (req, res) => {
   res.render('listings/new');
 });
 
+// POST FORM DATA TO DATABASE
 router.post('/', isSignedIn, upload.single('image'), async (req, res) => {
   try {
     req.body.poster = req.session.user._id;
     req.body.image = {
       url: req.file.path,
-      cloudinary_id: req.file.filename 
+      cloudinary_id: req.file.filename
     };
     await Listing.create(req.body);
     res.redirect('/listings');
@@ -24,17 +26,19 @@ router.post('/', isSignedIn, upload.single('image'), async (req, res) => {
   }
 });
 
+// VIEW INDEX PAGE
 router.get('/', async (req, res) => {
   const foundListings = await Listing.find();
   res.render('listings/index', { foundListings });
 });
 
+// VIEW SINGLE LISTING IN SHOW PAGE
 router.get('/:listingId', async (req, res) => {
   try {
     const foundListing = await Listing.findById(req.params.listingId)
       .populate('poster')
       .populate('comments.author');
-      console.log(foundListing)
+    console.log(foundListing)
     res.render('listings/show', { foundListing });
   } catch (error) {
     console.log(error);
@@ -42,15 +46,20 @@ router.get('/:listingId', async (req, res) => {
   }
 });
 
+// DELETE LISTING FROM DATABASE
 router.delete('/:listingId', isSignedIn, async (req, res) => {
+  // find the listing
   const foundListing = await Listing.findById(req.params.listingId).populate('poster');
+  // check is the user have listings
   if (foundListing.poster._id.equals(req.session.user._id)) {
+    //delete listing and redirect
     await foundListing.deleteOne();
     return res.redirect('/listings');
   }
   return res.send('Not authorized');
 });
 
+// Render Edit from View
 router.get('/:listingId/edit', isSignedIn, async (req, res) => {
   const foundListing = await Listing.findById(req.params.listingId).populate('poster');
   if (foundListing.poster._id.equals(req.session.user._id)) {
@@ -74,6 +83,7 @@ router.put('/:listingId', isSignedIn, upload.single('image'), async (req, res) =
   return res.send('Not authorized');
 });
 
+// post comments to database
 router.post('/:listingId/comments', isSignedIn, async (req, res) => {
   const foundListing = await Listing.findById(req.params.listingId);
   req.body.author = req.session.user._id;

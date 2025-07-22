@@ -9,7 +9,11 @@ router.get('/', (req, res) => {
 
 // SIGN UP VIEW
 router.get('/sign-up', (req, res) => {
-  res.render('auth/sign-up');
+  if (!req.session.user) {
+    res.render('auth/sign-up');
+  } else {
+    res.redirect('/');
+  }
 });
 
 // check if user name is taken or not
@@ -37,20 +41,27 @@ router.post('/sign-up', async (req, res) => {
   });
 });
 
+// SIGN-IN VIEW AND REDIRECT
 router.get('/sign-in', (req, res) => {
-  res.render('auth/sign-in');
+  if (!req.session.user) {
+    res.render('auth/sign-in');
+  } else {
+    res.redirect('/');
+  }
 });
 
 // SIGN IN USER POST 
 router.post('/sign-in', async (req, res) => {
+  // check if user exists in the database
   const userInDatabase = await User.findOne({ username: req.body.username });
   if (!userInDatabase) {
     return res.send('Login failed. Please try again.');
-  }// check if user exists in the database
+  }
+  // chack if user password is correct or not
   const validPassword = bcrypt.compareSync(req.body.password, userInDatabase.password);
   if (!validPassword) {
     return res.send('Login failed. Please try again.');
-  }// chack if user 
+  }
   req.session.user = {
     username: userInDatabase.username,
     _id: userInDatabase._id,
@@ -59,7 +70,7 @@ router.post('/sign-in', async (req, res) => {
     res.redirect('/');
   });
 });
-
+// SIGN OUT VIEW
 router.get('/sign-out', (req, res) => {
   req.session.destroy(() => {
     res.redirect('/');
