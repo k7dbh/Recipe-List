@@ -3,9 +3,8 @@
   <h2 class="text-center mb-3"><%= foundListing.title %></h2>
   <img src="<%= foundListing.image.url %>" class="img-fluid rounded mb-3" alt="Image of <%= foundListing.title %>">
   <p class="lead"><%= foundListing.description %></p>
-  <p><strong>Price:</strong> <%= foundListing.price %> BHD</p>
-  <p><strong>Viewer:</strong> <%= foundListing.viewer.username %></p>
-  <% if (user && foundListing.viewer._id.toString() === user._id.toString()) { %>
+  <p><strong>Done By:</strong> <%= foundListing.poster.username %></p>
+  <% if (user && foundListing.poster._id.toString() === user._id.toString()) { %>
     <div class="d-flex justify-content-between mb-4">
       <form action="/listings/<%= foundListing._id %>?_method=DELETE" method="POST">
         <button type="submit" class="btn btn-danger">Delete</button>

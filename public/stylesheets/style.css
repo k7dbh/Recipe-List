@@ -1,9 +1,18 @@
 .sign-up{
-    
+    transition: 0.3s;
 }
+.sign:hover{
+    color: orangered;
+}
+.sign-in{
+    transition: 0.3s;
+}
+
 body{
     background-color: #1f1f1f;
-    color: #f1f1f1
+    color: #f1f1f1;
+
+
 }
 h1{
     color: #f1f1f1;
@@ -11,4 +20,34 @@ h1{
 .search{
     background-color: green;
     color: #f1f1f1;
+}
+.container-fluid{
+    background-color: orange;
+    
+}
+.navbar-collapse{
+    
+}
+.navbar-toggler{
+    background-color: orange;
+    border: none;
+
+}
+.navbar-toggler-icon{
+    padding: 1em;
+
+}
+.nav-link{
+    transition: 0.1s;
+}
+.nav-link:hover{
+    font-weight: bold;
+}
+.nav-item{
+
+}
+
+.hh{
+    background-color: orange !important; 
+    
 }

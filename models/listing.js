@@ -9,12 +9,11 @@ const commentSchema = new mongoose.Schema({
 const listingSchema = new mongoose.Schema({
   title: String,
   description: String,
-  price: Number,
   image: {
     url: { type: String, required: true },
     cloudinary_id: { type: String, required: true }
   },
-  viewer: { type: Schema.Types.ObjectId, ref: 'User' },
+  poster: { type: Schema.Types.ObjectId, ref: 'User' },
   comments: [commentSchema]
 }, { timestamps: true });
 

@@ -12,7 +12,6 @@
           <div class="card-body">
             <h5 class="card-title"><%= listing.title %></h5>
             <p class="card-text"><%= listing.description %></p>
-            <p class="card-text"><strong><%= listing.price %> BHD</strong></p>
             <a href="/listings/<%= listing._id %>" class="btn btn-primary">View Listing</a>
             <form action="/favorites/<%= listing._id %>/remove" method="POST" class="d-inline">
               <button class="btn btn-warning" type="submit">★ Unfavorite</button>

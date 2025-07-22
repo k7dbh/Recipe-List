@@ -11,7 +11,7 @@ router.get("/new", isSignedIn, (req, res) => {
 
 router.post('/', isSignedIn, upload.single('image'), async (req, res) => {
   try {
-    req.body.viewer = req.session.user._id;
+    req.body.poster = req.session.user._id;
     req.body.image = {
       url: req.file.path,
       cloudinary_id: req.file.filename 
@@ -32,7 +32,7 @@ router.get('/', async (req, res) => {
 router.get('/:listingId', async (req, res) => {
   try {
     const foundListing = await Listing.findById(req.params.listingId)
-      .populate('viewer')
+      .populate('poster')
       .populate('comments.author');
       console.log(foundListing)
     res.render('listings/show', { foundListing });
@@ -43,8 +43,8 @@ router.get('/:listingId', async (req, res) => {
 });
 
 router.delete('/:listingId', isSignedIn, async (req, res) => {
-  const foundListing = await Listing.findById(req.params.listingId).populate('viewer');
-  if (foundListing.viewer._id.equals(req.session.user._id)) {
+  const foundListing = await Listing.findById(req.params.listingId).populate('poster');
+  if (foundListing.poster._id.equals(req.session.user._id)) {
     await foundListing.deleteOne();
     return res.redirect('/listings');
   }
@@ -52,16 +52,16 @@ router.delete('/:listingId', isSignedIn, async (req, res) => {
 });
 
 router.get('/:listingId/edit', isSignedIn, async (req, res) => {
-  const foundListing = await Listing.findById(req.params.listingId).populate('viewer');
-  if (foundListing.viewer._id.equals(req.session.user._id)) {
+  const foundListing = await Listing.findById(req.params.listingId).populate('poster');
+  if (foundListing.poster._id.equals(req.session.user._id)) {
     return res.render('listings/edit', { foundListing });
   }
   return res.send('Not authorized');
 });
 
 router.put('/:listingId', isSignedIn, upload.single('image'), async (req, res) => {
-  const foundListing = await Listing.findById(req.params.listingId).populate('viewer');
-  if (foundListing.viewer._id.equals(req.session.user._id)) {
+  const foundListing = await Listing.findById(req.params.listingId).populate('poster');
+  if (foundListing.poster._id.equals(req.session.user._id)) {
     if (req.file) {
       req.body.image = {
         url: req.file.path,

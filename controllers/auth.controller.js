@@ -7,15 +7,18 @@ router.get('/', (req, res) => {
   res.send('does the auth route work?');
 });
 
+// SIGN UP VIEW
 router.get('/sign-up', (req, res) => {
   res.render('auth/sign-up');
 });
 
+// check if user name is taken or not
 router.post('/sign-up', async (req, res) => {
   const userInDatabase = await User.findOne({ username: req.body.username });
   if (userInDatabase) {
     return res.send('Username already taken.');
   }
+  // password matches confirmPassword
   if (req.body.password !== req.body.confirmPassword) {
     return res.send('Password and confirm password must match.');
   }
@@ -38,15 +41,16 @@ router.get('/sign-in', (req, res) => {
   res.render('auth/sign-in');
 });
 
+// SIGN IN USER POST 
 router.post('/sign-in', async (req, res) => {
   const userInDatabase = await User.findOne({ username: req.body.username });
   if (!userInDatabase) {
     return res.send('Login failed. Please try again.');
-  }
+  }// check if user exists in the database
   const validPassword = bcrypt.compareSync(req.body.password, userInDatabase.password);
   if (!validPassword) {
     return res.send('Login failed. Please try again.');
-  }
+  }// chack if user 
   req.session.user = {
     username: userInDatabase.username,
     _id: userInDatabase._id,

@@ -14,16 +14,15 @@
           <div class="card-body">
             <h5 class="card-title"><%= listing.title %></h5>
             <p class="card-text"><%= listing.description %></p>
-            <p class="card-text"><strong><%= listing.price %> BHD</strong></p>
             <a href="/listings/<%= listing._id %>" class="btn btn-primary">View Listing</a>
             <% if (user) { %>
               <% if (user.favorites && user.favorites.includes(listing._id.toString())) { %>
                 <form action="/favorites/<%= listing._id %>/remove" method="POST" class="d-inline">
-                  <button class="btn btn-warning" type="submit">★ Unfavorite</button>
+                  <button class="btn btn-warning" type="submit">★</button>
                 </form>
               <% } else { %>
                 <form action="/favorites/<%= listing._id %>/add" method="POST" class="d-inline">
-                  <button class="btn btn-outline-warning" type="submit">☆ Favorite</button>
+                  <button class="btn btn-outline-warning" type="submit">☆</button>
                 </form>
               <% } %>
             <% } %>
