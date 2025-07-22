@@ -46,6 +46,16 @@ h1{
 .nav-item{
 
 }
+.sign-upp{
+    background-color: aqua;
+
+}
+.sign-inn{
+    transition: 0.3s;
+}
+.sign-inn:hover{
+    
+}
 
 .hh{
     background-color: orange !important; 
