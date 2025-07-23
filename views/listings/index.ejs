@@ -14,11 +14,11 @@
             <% if (user) { %>
               <% if (user.favorites && user.favorites.includes(listing._id.toString())) { %>
                 <form action="/favorites/<%= listing._id %>/remove" method="POST" class="d-inline">
-                  <button class="btn btn-warning" type="submit">★ Unfavorite</button>
+                  <button class="btn btn-warning btn-fav" type="submit">★ Unfavorite</button>
                 </form>
               <% } else { %>
                 <form action="/favorites/<%= listing._id %>/add" method="POST" class="d-inline">
-                  <button class="btn btn-outline-warning" type="submit">☆ Favorite</button>
+                  <button class="btn btn-outline-warning btn-fav" type="submit">☆ Favorite</button>
                 </form>
               <% } %>
             <% } %>

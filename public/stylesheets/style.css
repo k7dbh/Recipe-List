@@ -26,6 +26,7 @@ h1 {
 .navbar-brand:hover {
     font-weight: bold
 }
+
 .navbar-toggler {
     background-color: orange;
     border: none;
@@ -82,33 +83,60 @@ h1 {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    
+
 }
-.card-img-cstm{
+
+.btn-fav {
+    background-color: #ffc107;
+    border: #ffc107 1px solid;
+    color: black;
+}
+
+.card-img-cstm {
     min-height: 50%;
 }
-.cardif{
-    border:#1f1f1f 2px solid;
+
+.cardif {
+    border: #1f1f1f 2px solid;
     background-color: #ffda9a;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
-@media(max-width: 765px){
-    .space-list{
+
+.card-index {
+    border: #1f1f1f 2px solid;
+    background-color: #ffda9a;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-body-index {
+    padding: 20px;
+}
+
+.card-body-favList {
+    padding: 20px;
+}
+
+@media(max-width: 765px) {
+    .space-list {
         gap: 7em;
     }
 }
+
 @media (min-width: 990px) and (max-width: 1200px) {
-  .card-body-hh {
-     background-color: #ffda9a;
-    padding: 5%;
-    min-height: 56%;
-  }
-}
-@media (min-width: 1400px){
     .card-body-hh {
-    padding: 8%;
-    min-height: 46%;
-  }
+        background-color: #ffda9a;
+        padding: 5%;
+        min-height: 56%;
+    }
+}
+
+@media (min-width: 1400px) {
+    .card-body-hh {
+        padding: 8%;
+        min-height: 46%;
+    }
 }

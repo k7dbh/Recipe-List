@@ -1,17 +1,17 @@
 #  Recipe-List
 
-<img src="" width="400" height="350">
+<img src="./public/pictures/Screenshot 2025-07-23 220603.png" width="400" height="350" alt="picture of app">
 
 - Done by: Khaled Jamal
 
 ## 🍽️ App Description:
 
-Spaceman is a game player guess the word by typing letters from the keyboard within restricted number of tries. To win, you need to get the right letters to know the random word otherwise you will lose. 
+Recipe-List is a web app that allows users to browse, add, edit, and delete recipes. Users can create an account, log in, and save their favorite recipes. The app lets you easily organize and discover new dishes, making it simple to manage your personal collection of recipes.
 
 ## 🔎 Background info:
-I am creating this project as part of my studies at General Assembly's software engineering bootcamp.
+I am building this project as part of my studies at General Assembly's Software Engineering Bootcamp.
 
-The reason I chose to create a Recipe-List app as my project is because I found that , fun and intriguing for a beginner's game project, and at the same time having the oppurtunity to learn much of JavaScript's fundamentals along with CSS Grid which I believe will be valuable knowledge for me in the future.
+I chose to create a Recipe-List app because I find cooking and recipe sharing both fun and useful. This project is a great way for me to practice JavaScript fundamentals, work with CSS Grid for modern layouts, and deepen my understanding of web development with technologies like Node.js, Express, and MongoDB. I believe this knowledge will be valuable for my future as a developer.
 
 ## 🧮 Getting started
 
@@ -19,32 +19,22 @@ The reason I chose to create a Recipe-List app as my project is because I found 
 
 👉**Planning Materials:** [link of trello](https://trello.com/b/XpBGfyPX/recipe-list) 
 
-### How to play
-1. Guess the word:
-The computer will choose for you a word randomly and you need to guess it.
-
-2. Number of tries
-You have five chances to guess the word by using the keyboard.
-
-3. 
-
 ## 💻 Technologies Used
 
 - EJS
 - CSS
 - JavaScript/Node.js
 - Express
-- 
-- mongoDB/mongoose
-- cloudinary
+- MongoDB / Mongoose
+- Cloudinary
 
 ## 📚 Attributions
 
-- []()
+- [Bootstrap](https://getbootstrap.com/)
 
 ## Next Steps
 
-- 
-- 
-- 
-- 
+- Create more cool features in adding list
+- Improve app security
+- Add more features to comment section 
+- Do cool animations for lists and main page

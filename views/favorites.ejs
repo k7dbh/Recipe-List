@@ -9,12 +9,12 @@
       <div class="col">
         <div class="card h-100 cardif">
           <img src="<%= listing.image.url %>" class="card-img-top card-img-cstm" alt="Image of <%= listing.title %>">
-          <div class="card-body-h">
+          <div class="card-body-favList">
             <h5 class="card-title"><%= listing.title %></h5>
             <p class="card-text"><%= listing.description %></p>
             <a href="/listings/<%= listing._id %>" class="btn btn-primary">View Listing</a>
             <form action="/favorites/<%= listing._id %>/remove" method="POST" class="d-inline">
-              <button class="btn btn-warning" type="submit">★ Unfavorite</button>
+              <button class="btn btn-warning btn-fav" type="submit">★ Unfavorite</button>
             </form>
           </div>
         </div>

@@ -3,15 +3,15 @@
 <div class="container mt-4">
   <h1 class="text-center mb-4">Recipe-List</h1>
   <form class="d-flex mb-4" method="GET" action="/">
-    <input class="form-control me-2" type="search" name="q" placeholder="Search for listings..." value="<%= typeof q !== 'undefined' ? q : '' %>" aria-label="Search" />
+    <input class="form-control me-2" type="search" name="search" placeholder="Search for listings..." value="<%= search ? search : '' %>" aria-label="Search" />
     <button class="btn btn-outline-success search" type="submit">Search</button>
   </form>
   <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
     <% foundListings.forEach((listing) => { %>
       <div class="col">
-        <div class="card h-100 cardif ">
+        <div class="card h-100 card-index ">
           <img src="<%= listing.image.url %>" class="card-img-top card-img-cstm" alt="Image of <%= listing.title %>">
-          <div class="card-body-h">
+          <div class="card-body-index">
             <h5 class="card-title"><%= listing.title %></h5>
             <p class="card-text"><%= listing.description %></p>
             <a href="/listings/<%= listing._id %>" class="btn btn-primary">View Listing</a>
@@ -22,7 +22,7 @@
                 </form>
               <% } else { %>
                 <form action="/favorites/<%= listing._id %>/add" method="POST" class="d-inline">
-                  <button class="btn btn-outline-warning" type="submit">☆ Favorite</button>
+                  <button class="btn btn-outline-warning btn-fav " type="submit">☆ Favorite</button>
                 </form>
               <% } %>
             <% } %>

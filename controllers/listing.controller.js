@@ -55,7 +55,7 @@ router.delete('/:listingId', isSignedIn, async (req, res) => {
   const foundListing = await Listing.findById(req.params.listingId).populate('poster');
   // check is the user have listings
   if (foundListing.poster._id.equals(req.session.user._id)) {
-    if(foundListing.image?.cloudinary_id){
+    if (foundListing.image?.cloudinary_id) {
       await cloudinary.uploader.destroy(foundListing.image.cloudinary_id)
     }
     //delete listing and redirect
@@ -84,14 +84,14 @@ router.put('/:listingId', isSignedIn, upload.single('image'), async (req, res) =
         cloudinary_id: req.file.filename
       };
     };
-    if(req.file && foundListing.image?.cloudinary_id){
+    if (req.file && foundListing.image?.cloudinary_id) {
       await cloudinary.uploader.destroy(foundListing.image.cloudinary_id)
       foundListing.image.url = req.file.path;
       foundListing.image.cloudinary_id = req.file.filename;
     }
     foundListing.title = req.body.title;
     foundListing.description = req.body.description;
-    
+
     await foundListing.save()
     return res.redirect(`/listings/${req.params.listingId}`);
   }
