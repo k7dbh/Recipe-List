@@ -2,7 +2,7 @@ require('dotenv').config({ quiet: true });
 const express = require('express');
 const app = express();
 const methodOverride = require('method-override');
-const morgan = require('morgan');
+//const morgan = require('morgan');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
@@ -32,7 +32,7 @@ mongoose.connection.on('connected', () => {
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride('_method'));
-app.use(morgan('dev'));
+//app.use(morgan('dev'));
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
