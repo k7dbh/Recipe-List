@@ -1,85 +1,114 @@
-body{
+body {
     background-color: #1f1f1f;
     color: #f1f1f1;
 
 
 }
-h1{
+
+h1 {
     color: #f1f1f1;
 }
-.search{
+
+.search {
     background-color: green;
     color: #f1f1f1;
 }
-.container-fluid{
+
+.container-fluid {
     background-color: orange;
-    
-}
-.navbar-brand{
-    transition: 0.1s;
-}
-.navbar-brand:hover{
-    font-weight: bold
+
 }
 
-.navbar-collapse{
-    
+.navbar-brand {
+    transition: 0.1s;
 }
-.navbar-toggler{
+
+.navbar-brand:hover {
+    font-weight: bold
+}
+.navbar-toggler {
     background-color: orange;
     border: none;
 
 }
-.navbar-toggler-icon{
+
+.navbar-toggler-icon {
     padding: 1em;
 
 }
-.nav-link{
+
+.nav-link {
     transition: 0.1s;
 }
-.nav-link:hover{
+
+.nav-link:hover {
     font-weight: bold;
 }
-.sign-upp{
+
+.sign-upp {
     transition: 0.1s;
 
 }
-.sign-upp:hover{
-    background-color: orange;
-}
-.sign-inn{
-    transition: 0.1s;
-}
-.sign-inn:hover{
-    background-color: rgb(255, 166, 0);
-}
-.sign-outt{
-    transition: 0.1s;
 
-}
-.sign-outt:hover{
+.sign-upp:hover {
     background-color: orange;
 }
 
-.hh{
-    background-color: orange !important; 
+.sign-inn {
+    transition: 0.1s;
+}
+
+.sign-inn:hover {
+    background-color: orange
+}
+
+.sign-outt {
+    transition: 0.1s;
+}
+
+.sign-outt:hover {
+    background-color: orange;
+}
+
+.hh {
+    background-color: rgb(255, 166, 0) !important;
+
+}
+
+.card-body-hh {
+    background-color: #ffda9a;
+    padding: 3%;
+    min-height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     
 }
-.card-body{
-background-color: #ffe3bf;
+.card-img-cstm{
+    min-height: 50%;
 }
-.card-bodyy{
-background-color: #1f1f1f;
-border-radius: 20px;
-display: flex;
-justify-content: center;
+.cardif{
+    border:#1f1f1f 2px solid;
+    background-color: #ffda9a;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
-.cardyy{
-    background-color: #1f1f1f;
-border-radius: 20px;
-display: flex;
-justify-content: center;
+@media(max-width: 765px){
+    .space-list{
+        gap: 7em;
+    }
 }
-.card-body-h{
-    background-color: #ffe3bf;
+@media (min-width: 990px) and (max-width: 1200px) {
+  .card-body-hh {
+     background-color: #ffda9a;
+    padding: 5%;
+    min-height: 56%;
+  }
+}
+@media (min-width: 1400px){
+    .card-body-hh {
+    padding: 8%;
+    min-height: 46%;
+  }
 }

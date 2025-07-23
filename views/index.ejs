@@ -9,8 +9,8 @@
   <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
     <% foundListings.forEach((listing) => { %>
       <div class="col">
-        <div class="card h-100 ">
-          <img src="<%= listing.image.url %>" class="card-img-top" alt="Image of <%= listing.title %>">
+        <div class="card h-100 cardif ">
+          <img src="<%= listing.image.url %>" class="card-img-top card-img-cstm" alt="Image of <%= listing.title %>">
           <div class="card-body-h">
             <h5 class="card-title"><%= listing.title %></h5>
             <p class="card-text"><%= listing.description %></p>

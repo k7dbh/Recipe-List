@@ -4,6 +4,8 @@ const Listing = require('../models/listing');
 const isSignedIn = require('../middleware/is-signed-in');
 const upload = require('../config/multer');
 const User = require('../models/user');
+const cloudinary = require('../config/cloudinary');
+
 
 // VIEW NEW LISTING FORM
 router.get("/new", isSignedIn, (req, res) => {
@@ -18,6 +20,7 @@ router.post('/', isSignedIn, upload.single('image'), async (req, res) => {
       url: req.file.path,
       cloudinary_id: req.file.filename
     };
+    console.log(req.file.path)
     await Listing.create(req.body);
     res.redirect('/listings');
   } catch (error) {
@@ -52,6 +55,9 @@ router.delete('/:listingId', isSignedIn, async (req, res) => {
   const foundListing = await Listing.findById(req.params.listingId).populate('poster');
   // check is the user have listings
   if (foundListing.poster._id.equals(req.session.user._id)) {
+    if(foundListing.image?.cloudinary_id){
+      await cloudinary.uploader.destroy(foundListing.image.cloudinary_id)
+    }
     //delete listing and redirect
     await foundListing.deleteOne();
     return res.redirect('/listings');
@@ -70,14 +76,23 @@ router.get('/:listingId/edit', isSignedIn, async (req, res) => {
 
 router.put('/:listingId', isSignedIn, upload.single('image'), async (req, res) => {
   const foundListing = await Listing.findById(req.params.listingId).populate('poster');
+
   if (foundListing.poster._id.equals(req.session.user._id)) {
     if (req.file) {
       req.body.image = {
         url: req.file.path,
         cloudinary_id: req.file.filename
       };
+    };
+    if(req.file && foundListing.image?.cloudinary_id){
+      await cloudinary.uploader.destroy(foundListing.image.cloudinary_id)
+      foundListing.image.url = req.file.path;
+      foundListing.image.cloudinary_id = req.file.filename;
     }
-    await Listing.findByIdAndUpdate(req.params.listingId, req.body, { new: true });
+    foundListing.title = req.body.title;
+    foundListing.description = req.body.description;
+    
+    await foundListing.save()
     return res.redirect(`/listings/${req.params.listingId}`);
   }
   return res.send('Not authorized');
